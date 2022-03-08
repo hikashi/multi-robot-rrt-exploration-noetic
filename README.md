@@ -93,9 +93,15 @@ The exploration relies on the correct sequence else rendering with no goal for e
  
  
 ## Saving Map
-Save the map using the following command:
+Save the map for single robot using the following command:
 
-    # rosrun map_server map_saver -f mymap
+    # rosrun map_server map_saver -f mymap map:=/tb3_0/map
+    
+    
+Save the map for multirobot using the following command:
+
+    # rosrun map_server map_saver -f mymap map:=/map
+    
     
 ## How to speed up Gazebo
 - Try to download the [online models](https://github.com/osrf/gazebo_models) and put inside "~/.gazebo/models/" folder 
@@ -108,3 +114,5 @@ Save the map using the following command:
 3. sometimes robots will take some time to move to new plan.
 4. The revenue function is awkwardly computing large negative value and hence the navigation cost seem insignificant. (inherited from the original RRT exploration)
 5.  assignment of the goal is not close to suboptimal. May need to perform optimization on the goal allocation.
+6.  some may encounter deadlock for robots in some map due to suboptimal configuration of the robot.
+7.  some calculation might be differ than the original as there are some changes in the algorithm in midst of changing the script from python 2 to python 3.
