@@ -24,6 +24,7 @@ The following libraries are required to install before proceeding to run the cod
     $ sudo apt-get install python-numpy
     $ sudo apt-get install python-scikits-learn
     $ sudo apt-get install ros-noetic-teb-local-planner
+    $ sudo apt-get install ros-noetic-multirobot-map-merge
 
 
 ## Installation Process
