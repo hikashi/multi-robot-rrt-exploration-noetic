@@ -1,0 +1,20 @@
+<launch>
+  <arg name="namespace" default="tb3_1"/>
+  <arg name="set_base_frame" default="$(arg namespace)/base_footprint"/>
+  <arg name="set_odom_frame" default="$(arg namespace)/odom"/>
+  <arg name="set_map_frame" default="$(arg namespace)/map"/>
+
+  <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node"
+    args="-configuration_directory $(find ros_3d_multitb3)/configuration -configuration_basename cartographer_velodyne.lua"
+    output="screen">
+    <arg name="set_base_frame" value="$(arg namespace)/base_footprint"/>
+    <arg name="set_odom_frame" value="$(arg namespace)/odom"/>
+    <arg name="set_map_frame" value="$(arg namespace)/map"/>
+    <remap from="points2" to="/velodyne_points" />
+  </node>
+
+  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros" type="cartographer_occupancy_grid_node"
+      args="-resolution 0.05">
+  </node>
+
+</launch>

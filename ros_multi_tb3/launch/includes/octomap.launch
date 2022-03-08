@@ -1,0 +1,24 @@
+<launch>
+	<arg name="namespace" default=""/>
+	<arg name="frame_id" default="$(arg namespace)/odom"/>
+	<arg name="base_footprint" default="$(arg namespace)/base_footprint"/>
+	<arg name="pointcloud" default="$(arg namespace)/velodyne_points"/>
+	<arg name="map_name" default="$(arg namespace)/projected_map"/>
+
+	<!-- <group ns = "/$(arg namespace)"> -->
+	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+		<param name="resolution" value="0.05" />
+		<param name="frame_id" type="string" value="$(arg frame_id)" />
+		<param name="base_frame_id" type="string" value="$(arg base_footprint)"/>
+		<param name="sensor_model/max_range" value="8.0" />
+		<param name="filter_ground" value="true" />
+
+		<remap from="projected_map" to="$(arg map_name)" />
+		<remap from="cloud_in" to="$(arg pointcloud)" />
+		<!-- mapping for the upcoming data -->
+		
+		<!-- <remap from="cloud_in" to="$(arg pointcloud)" /> -->
+	</node>
+	<!-- </group> -->
+
+</launch>

@@ -1,0 +1,66 @@
+<!--launch map merging features -->
+<launch>
+    <arg name="model" default="waffle_pi" doc="model type [burger, waffle, waffle_pi]"/>
+    <arg name="move_forward_only" default="false"/>
+  
+    <!-- define for the turtlebot environment -->
+    <arg name="first_tb3"  default="tb3_1"/>
+    <arg name="second_tb3" default="tb3_2"/>
+    <arg name="third_tb3"  default="tb3_3"/>
+
+
+    <arg name="first_tb3_x_pos" default=" 0.5"/>
+    <arg name="first_tb3_y_pos" default=" 2.2"/>
+    <arg name="first_tb3_z_pos" default=" 0.0"/>
+    <arg name="first_tb3_yaw"   default=" 0.0"/>
+  
+    <arg name="second_tb3_x_pos" default=" 0.5"/>
+    <arg name="second_tb3_y_pos" default=" 3.8"/>
+    <arg name="second_tb3_z_pos" default=" 0.0"/>
+    <arg name="second_tb3_yaw"   default=" 0.0"/>
+  
+    <arg name="third_tb3_x_pos" default=" 0.5"/>
+    <arg name="third_tb3_y_pos" default=" 3.0"/>
+    <arg name="third_tb3_z_pos" default=" 0.0"/>
+    <arg name="third_tb3_yaw"   default=" 0.0"/>
+
+
+  <!-- Map megring (know inital position case)-->
+  <group ns="/$(arg first_tb3)/map_merge">
+    <param name="init_pose_x" value="$(arg first_tb3_x_pos)"/>
+    <param name="init_pose_y" value="$(arg first_tb3_y_pos)"/>
+    <param name="init_pose_z" value="$(arg first_tb3_z_pos)"/>
+    <param name="init_pose_yaw" value="$(arg first_tb3_yaw)"/>
+  </group>
+  <group ns="/$(arg second_tb3)/map_merge">
+    <param name="init_pose_x" value="$(arg second_tb3_x_pos)"/>
+    <param name="init_pose_y" value="$(arg second_tb3_y_pos)"/>
+    <param name="init_pose_z" value="$(arg second_tb3_z_pos)"/>
+    <param name="init_pose_yaw" value="$(arg second_tb3_yaw)"/>
+  </group>
+  <group ns="/$(arg third_tb3)/map_merge">
+    <param name="init_pose_x" value="$(arg third_tb3_x_pos)"/>
+    <param name="init_pose_y" value="$(arg third_tb3_y_pos)"/>
+    <param name="init_pose_z" value="$(arg third_tb3_z_pos)"/>
+    <param name="init_pose_yaw" value="$(arg third_tb3_yaw)"/>
+  </group>
+
+
+    <!-- Launch the map_merge node along with transform publishers -->
+    <!-- <node pkg="multirobot_map_merge" type="map_merge" respawn="false" name="map_merge" output="screen"> -->
+    <node pkg="multirobot_map_merge" type="map_merge" respawn="false" name="map_merge">
+      <param name="robot_map_topic" value="/map"/>
+      <param name="robot_namespace" value="tb3"/>
+      <param name="merged_map_topic" value="/map"/>
+      <param name="world_frame" value="world"/>
+      <param name="known_init_poses" value="true"/>
+      <param name="merging_rate" value="3.0"/>
+      <!-- <param name="merging_rate" value="0.1"/> -->
+      <param name="discovery_rate" value="0.02"/>
+      <param name="estimation_rate" value="0.6"/>
+      <param name="estimation_confidence" value="0.6"/>
+  </node>
+  
+
+
+</launch>

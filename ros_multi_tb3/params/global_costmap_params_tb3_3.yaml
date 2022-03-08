@@ -1,0 +1,52 @@
+global_costmap:
+
+  footprint: [[-0.205, -0.155], [-0.205, 0.155], [0.077, 0.155], [0.077, -0.155]]
+  # footprint: [[-0.105, -0.055], [-0.105, 0.055], [0.077, 0.055], [0.077, -0.055]]
+
+  global_frame: map
+  robot_base_frame: tb3_3/base_footprint
+  
+
+  update_frequency: 5.0       #1.0
+  publish_frequency: 5.0       #0.5
+  transform_tolerance: 0.3
+  # static_map: false
+  static_map: true
+  # rolling_window: true
+
+  #width: 100.0
+  #height: 100.0
+  #resolution: 0.05
+  
+
+  plugins:
+    - {name: static_layer,            type: "costmap_2d::StaticLayer"}
+    - {name: obstacle_layer,          type: "costmap_2d::VoxelLayer"}
+    - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}
+
+  static_layer:
+    enabled:              true
+    # map_topic:            "/tb3_3/map"
+    map_topic:            "/map"
+    subscribe_to_updates: true
+
+  obstacle_layer:
+    enabled: true
+    track_unknown_space: true
+    combination_method: 1
+    #The cost at which a cell is considered an obstacle when a map is read from the map_server
+    lethal_cost_threshold: 100
+    
+    observation_sources: scan
+    scan: {sensor_frame: tb3_3/base_scan, data_type: LaserScan, topic: /tb3_3/scan, marking: true, clearing: true, obstacle_range: 3.0, raytrace_range: 4.0}
+  
+  inflation_layer:
+    enabled:              true
+    # cost_scaling_factor:  10.0       #10.0  # exponential rate at which the obstacle cost drops off (default: 10)
+    #inflation_radius:     0.2
+    # inflation_radius:     0.4   #0.4  # max. distance from an obstacle at which costs are incurred for planning paths.
+
+    inflation_radius: 1.3
+    cost_scaling_factor: 10.0
+    # inflation_radius: 0.15
+    # cost_scaling_factor: 8.0

@@ -1,0 +1,13 @@
+base_global_planner: "navfn/NavfnROS"
+
+NavfnROS:
+  # allow_unknown: false # Specifies whether or not to allow navfn to create plans that traverse unknown space.
+  allow_unknown: true # Specifies whether or not to allow navfn to create plans that traverse unknown space.
+  default_tolerance: 0.35
+  visualize_potential: true
+  #use_dijkstra: false
+  #use_quadratic: true
+  #use_grid_path: false
+  #old_navfn_behavior: false
+
+  # last_plan_if_blocked: true
