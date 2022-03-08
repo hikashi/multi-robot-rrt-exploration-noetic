@@ -4,7 +4,7 @@ This would serve as a self-contained package for the exploration module using si
 This is tested on buntu 20.04.03LTS with ROS Noetic.
 
 **Portion of the code with Python 2 has been updated to Python 3.**
-**Note that the outcome might differ than the original calculation.**
+**Note that the outcome might differ than the original calculation but should be approximately identical.**
 
 credit to hasauino for creating the RRT exploration packages.
 
