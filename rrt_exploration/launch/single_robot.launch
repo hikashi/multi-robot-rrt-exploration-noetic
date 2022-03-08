@@ -1,0 +1,70 @@
+<!-- Launch file for the rrt-detector and the assigner -->
+
+
+<launch>
+    <arg name="eta" value="1.0"/>
+    <arg name="Geta" value="1.0"/>
+    <arg name="info_radius" value="1.0"/>
+    <arg name="info_multiplier" value="3.0"/>
+    <arg name="hysteresis_radius" value="3.0"/>
+    <arg name="hysteresis_gain" value="3.0"/>
+    <arg name="costmap_clearing_threshold" value="50"/>
+    <arg name="delay_after_assignement" value="0.7"/>   
+    <arg name="bandwith_cluster" value="0.3"/>   
+    <arg name="frequency1" value="5.0"/>
+    <arg name="detected_frontier" value="/detected_points"/>
+    <arg name="filtered_frontier" value="/filtered_points"/>
+    <!-- <arg name="rd_metric" value="15.0"/> -->
+    <!-- robot name space definition -->
+    <arg name="first_tb3"  default="tb3_0"/>
+    <arg name="global_map" value ="/map"/>
+    <arg name="global_frame" value ="map"/>
+    <arg name="global_costmap_topic" value="/move_base_node/global_costmap/costmap"/>
+  
+    <node pkg="rrt_exploration" type="boundary.py" name="exploration_boundary" output="screen">
+      <param name="mapFrame" value="map"/>
+      <param name="n_point" value="4"/>
+      <param name="topicInput" value="clicked_point"/>
+      <param name="topicOutput" value="exploration_boundary"/>
+      <param name="frequency" value="0.5"/>
+      </node>
+
+
+    <node pkg="rrt_exploration" type="global_rrt_detector" name="global_detector" output="screen">
+    <param name="eta" value="$(arg Geta)"/>
+    <param name="map_topic" value="/$(arg first_tb3)/map"/>
+    </node>
+    
+    <node pkg="rrt_exploration" type="local_rrt_detector" name="local_detector" output="screen">
+    <param name="eta" value="$(arg eta)"/>
+    <param name="map_topic" value="/$(arg first_tb3)/map"/>
+    <param name="robot_frame" value="/$(arg first_tb3)/base_link"/>
+    </node>
+ 
+  
+    <!-- for the filter node  -->
+    <node pkg="rrt_exploration" type="filter.py" name="filter" output="screen">
+      <param name="map_topic" value="$(arg global_map)"/>
+      <param name="info_radius" value="$(arg info_radius)"/> 
+      <param name="costmap_clearing_threshold" value="$(arg costmap_clearing_threshold)"/> 
+      <param name="global_costmap_topic" value="$(arg global_costmap_topic)"/> 
+      <param name="goals_topic" value="$(arg detected_frontier)"/> 
+      <param name="robot_namelist" value="$(arg first_tb3)"/>
+      <param name="rate" value="$(arg frequency1)"/>
+      <param name="local_map" value="/map"/>
+      <param name="bandwith_cluster" value="$(arg bandwith_cluster)"/>
+    </node>
+
+    <!-- assign the frontier to the data  -->
+    <node pkg="rrt_exploration" type="assigner.py" name="assigner" output="screen">
+      <param name="map_topic" value="$(arg first_tb3)/$(arg global_map)"/>
+      <param name="global_frame" value="$(arg global_frame)"/>
+      <param name="info_radius" value="$(arg info_radius)"/> 
+      <param name="info_multiplier" value="$(arg info_multiplier)"/> 
+      <param name="hysteresis_radius" value="$(arg hysteresis_radius)"/> 
+      <param name="hysteresis_gain" value="$(arg hysteresis_gain)"/> 
+      <param name="frontiers_topic" value="/filtered_points"/> 
+      <param name="robot_namelist" value="$(arg first_tb3)"/>
+      <param name="delay_after_assignement" value="$(arg delay_after_assignement)"/>
+    </node>
+</launch>
