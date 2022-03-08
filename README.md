@@ -55,12 +55,12 @@ Terminal 2
 
      # source ~/catkin_explore/devel/setup.bash 
      # export TURTLEBOT3_MODEL=waffle_pi
-     # roslaunch ros_multitb3 single_tb3_house.launch
+     # roslaunch ros_multi_tb3 single_tb3_house.launch
 Terminal 3
 
      # source ~/catkin_explore/devel/setup.bash 
      # export TURTLEBOT3_MODEL=waffle_pi
-     # roslaunch rrt_exploration single_tb3_exploration.launch 
+     # roslaunch rrt_exploration single_robot.launch 
 
 ## Execution for Multirobot
 The program can be executed using the following comments in three terminal:
@@ -72,12 +72,12 @@ Terminal 2
 
      # source ~/catkin_explore/devel/setup.bash 
      # export TURTLEBOT3_MODEL=waffle_pi
-     # roslaunch ros_multitb3 multi_tb3_house.launch 
+     # roslaunch ros_multi_tb3 multiple_tb3_house.launch 
 Terminal 3
 
      # source ~/catkin_explore/devel/setup.bash 
      # export TURTLEBOT3_MODEL=waffle_pi
-     # roslaunch rrt_exploration multi_tb3_exploration.launch 
+     # roslaunch rrt_exploration three_robots.launch 
 
 
 
