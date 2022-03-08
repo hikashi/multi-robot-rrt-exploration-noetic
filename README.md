@@ -3,8 +3,8 @@ This package is a compilation of the RRT package in a much complete package rath
 This would serve as a self-contained package for the exploration module using simulation for the turtlebot.
 This is tested on buntu 20.04.03LTS with ROS Noetic.
 
-Portion of the code with Python 2 has been updated to Python 3.
-The
+**Portion of the code with Python 2 has been updated to Python 3.**
+**Note that the outcome might differ than the original calculation.**
 
 credit to hasauino for creating the RRT exploration packages.
 
