@@ -1,12 +1,12 @@
 # Multirobot Turtlebot3 Simulation Exploration based on RRT for Ubuntu 20.04 ROS Noetic
-This package is a compilation of the RRT package in a much complete package rather than figuring map merging and other function from other resipotary. 
+This package is a compilation of the RRT package in a much complete package rather than figuring map merging and other functions from other resipotary. 
 This would serve as a self-contained package for the exploration module using simulation for the turtlebot.
-This is tested on buntu 20.04.03LTS with ROS Noetic.
+This is tested on Ubuntu 20.04.03LTS with ROS Noetic.
 
-**Portion of the code with Python 2 has been updated to Python 3.**
-**Note that the outcome might differ than the original calculation but should be approximately identical.**
+**A portion of the code with Python 2 has been updated to Python 3.**
+**Note that the outcome might differ from the original calculation but should be approximately identical.**
 
-credit to hasauino for creating the RRT exploration packages.
+credit to Hasauino for creating the RRT exploration packages.
 
 [RRT Exploration package](https://github.com/hasauino/rrt_exploration "RRT Exploration").
 
@@ -14,9 +14,9 @@ credit to hasauino for creating the RRT exploration packages.
 
 
 ## Requirements
-The following code is exectuted in ROS Melodic in Ubuntu 18.04 LTS
+The following code is executed in ROS Noetic in Ubuntu 20.04 LTS
 
-The following libraries are required to install before proceeding to run the code
+The following libraries are required to be installed before proceeding to run the code
 
     $ sudo apt-get install ros-noetic-gmapping
     $ sudo apt-get install ros-noetic-navigation
@@ -28,7 +28,7 @@ The following libraries are required to install before proceeding to run the cod
 
 
 ## Installation Process
-create a new folder called "catkin_explore/src" by executing the following comment:
+Create a new folder called "catkin_explore/src" by executing the following comment:
 
     $ sudo mkdir -p ~/catkin_explore/src
     $ cd ~/catkin_explore/src/
@@ -37,7 +37,7 @@ create a new folder called "catkin_explore/src" by executing the following comme
     $ catkin_make
 
 ## Add in Amazon Map
-add in the amazon world map by executing the following comments:
+Download Amazon world map by executing the following comments:
 
     $ cd ~/catkin_explore/src
     $ git clone https://github.com/aws-robotics/aws-robomaker-small-house-world.git
@@ -47,7 +47,7 @@ add in the amazon world map by executing the following comments:
     
 
 ## Execution for Single Robot
-The program can be executed using the following comments in three terminal:
+The program can be executed using the following comments in three different terminals:
 
 Terminal 1
 
@@ -64,7 +64,7 @@ Terminal 3
      # roslaunch rrt_exploration single_robot.launch 
 
 ## Execution for Multirobot
-The program can be executed using the following comments in three terminal:
+The program can be executed using the following comments in three different terminals:
 
 Terminal 1
 
@@ -83,7 +83,7 @@ Terminal 3
 
 
 ## Exploration Process
-The exploration relies on the correct sequence of starting clicked point else there will be issue with exploration boundary.
+The exploration relies on the correct sequence of starting clicked points or else there will be an incorrect sequence of the exploration boundary.
 The idea is to start the exploration within a given boundary and not traverse outside of the boundary.
 1. Top Left
 2. Bottom Left
@@ -91,30 +91,30 @@ The idea is to start the exploration within a given boundary and not traverse ou
 4. Top Right
 5. Initial Point
  ![Instruction](/instruction2.png)
- Things to note: 5th initial point should be within the known map or preferable close to the robot starting point. 
+ Things to note: 5th initial point should be within the known map or preferably close to the robot starting point. 
  
  
 ## Saving Map
-Save the map for single robot using the following command:
+Save the map for a single robot using the following command:
 
     # rosrun map_server map_saver -f mymap map:=/tb3_0/map
     
     
-Save the map for multirobot using the following command:
+Save the map for multi-robot using the following command:
 
     # rosrun map_server map_saver -f mymap map:=/map
     
     
 ## How to speed up Gazebo
 - Try to download the [online models](https://github.com/osrf/gazebo_models) and put inside "~/.gazebo/models/" folder 
-- Try not run a lot process in the background (simulation is cpu intensive)
-- RVIZ might take up some of the computing power, can try to drop some topic if needed.
+- Try not to run a lot of processes in the background (simulation is CPU intensive)
+- RVIZ might take up some of the computing power, can try to drop some topics if needed.
 
 ## known issues
-1. the map merging will shift a lot if the slam drifting too severe.
-2. shifting causing the frontier point remains even after explored.
-3. sometimes robots will take some time to move to new plan.
-4. The revenue function is awkwardly computing large negative value and hence the navigation cost seem insignificant. (inherited from the original RRT exploration)
-5.  assignment of the goal is not close to suboptimal. May need to perform optimization on the goal allocation.
-6.  some may encounter deadlock for robots in some map due to suboptimal configuration of the robot.
-7.  some calculation might be differ than the original as there are some changes in the algorithm in midst of changing the script from python 2 to python 3.
+1. The map merging will shift a lot of the slam drifting is too severe.
+2. Shifting causes the frontier point to remain even after being explored.
+3. Sometimes robots will take some time to move to a new plan.
+4. The revenue function is awkwardly computing large negative values and hence the navigation cost seems insignificant. (inherited from the original RRT exploration)
+5.  The assignment of the goal is not close to suboptimal. May need to perform optimization on the goal allocation.
+6.  Some may encounter deadlock for robots in some maps due to the suboptimal configuration of the robot.
+7.  Some calculations might be different from the original as there are some changes in the algorithm in the midst of changing the script from Python 2 to Python 3.
