@@ -84,7 +84,7 @@ Terminal 3
 
 ## Exploration Process
 The exploration relies on the correct sequence of starting clicked point else there will be issue with exploration boundary.
-The idea is to start the exploration with a given boundary then the robots will be performing the exploration within.
+The idea is to start the exploration within a given boundary and not traverse outside of the boundary.
 1. Top Left
 2. Bottom Left
 3. Bottom Right
