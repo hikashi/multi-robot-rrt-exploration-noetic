@@ -6,15 +6,18 @@ This is tested on Ubuntu 20.04.03LTS with ROS Noetic.
 **A portion of the code with Python 2 has been updated to Python 3.**
 **Note that the outcome might differ from the original calculation but should be approximately identical.**
 
-# update 06 Nov 2023
-- remove camera for better performance.
-- update the fps for better performance in the lower specification computer.
-
 credit to Hasauino for creating the RRT exploration packages.
 
 [RRT Exploration package](https://github.com/hasauino/rrt_exploration "RRT Exploration").
 
 [RRT Exploration Tutorial package](https://github.com/hasauino/rrt_exploration_tutorials "RRT Exploration").
+
+
+# update 06 Nov 2023
+- remove camera for better performance.
+- update the fps for better performance in the lower specification computer.
+
+
 
 
 ## Requirements
