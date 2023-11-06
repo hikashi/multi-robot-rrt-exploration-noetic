@@ -186,33 +186,33 @@
     </inertial>
   </link>
 
-  <joint name="camera_joint" type="fixed">
+  <!--<joint name="camera_joint" type="fixed">
     <origin xyz="0.073 -0.011 0.084" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_link"/>
-  </joint>
+  </joint>-->
 
-  <link name="camera_link">
+  <!--<link name="camera_link">
     <collision>
       <origin xyz="0.005 0.011 0.013" rpy="0 0 0"/>
       <geometry>
         <box size="0.015 0.030 0.027"/>
       </geometry>
     </collision>
-  </link>
+  </link>-->
 
-  <joint name="camera_rgb_joint" type="fixed">
+ <!-- <joint name="camera_rgb_joint" type="fixed">
     <origin xyz="0.003 0.011 0.009" rpy="0 0 0"/>
     <parent link="camera_link"/>
     <child link="camera_rgb_frame"/>
   </joint>
-  <link name="camera_rgb_frame"/>
+  <link name="camera_rgb_frame"/>-->
 
-  <joint name="camera_rgb_optical_joint" type="fixed">
+  <!--<joint name="camera_rgb_optical_joint" type="fixed">
     <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
     <parent link="camera_rgb_frame"/>
     <child link="camera_rgb_optical_frame"/>
   </joint>
-  <link name="camera_rgb_optical_frame"/>
+  <link name="camera_rgb_optical_frame"/> -->
 
 </robot>
