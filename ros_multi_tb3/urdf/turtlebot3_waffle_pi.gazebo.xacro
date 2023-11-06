@@ -144,7 +144,7 @@
   </gazebo>
 
 <!--link : https://www.raspberrypi.org/documentation/hardware/camera/-->
-  <gazebo reference="camera_rgb_frame">
+ <!-- <gazebo reference="camera_rgb_frame">
     <sensor type="camera" name="Pi Camera">
       <always_on>true</always_on>
       <visualize>$(arg camera_visual)</visualize>
@@ -175,6 +175,6 @@
         <distortionT2>0.0</distortionT2>
       </plugin>
     </sensor>
-  </gazebo>
+  </gazebo> -->
 
 </robot>
