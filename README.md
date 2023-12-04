@@ -25,6 +25,7 @@ The following code is executed in ROS Noetic in Ubuntu 20.04 LTS
 
 The following libraries are required to be installed before proceeding to run the code
 
+    $ sudo apt-get install ros-neotic-turtlebot3*
     $ sudo apt-get install ros-noetic-gmapping
     $ sudo apt-get install ros-noetic-navigation
     $ sudo apt-get install python-opencv
