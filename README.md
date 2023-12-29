@@ -25,7 +25,7 @@ The following code is executed in ROS Noetic in Ubuntu 20.04 LTS
 
 The following libraries are required to be installed before proceeding to run the code
 
-    $ sudo apt-get install ros-neotic-turtlebot3*
+    $ sudo apt-get install ros-noetic-turtlebot3*
     $ sudo apt-get install ros-noetic-gmapping
     $ sudo apt-get install ros-noetic-navigation
     $ sudo apt-get install python-opencv
@@ -38,7 +38,7 @@ The following libraries are required to be installed before proceeding to run th
 ## Installation Process
 Create a new folder called "catkin_explore/src" by executing the following comment:
 
-    $ sudo mkdir -p ~/catkin_explore/src
+    $ mkdir -p ~/catkin_explore/src
     $ cd ~/catkin_explore/src/
     $ git clone https://github.com/hikashi/multi-robot-rrt-exploration-noetic.git
     $ cd ~/catkin_explore
